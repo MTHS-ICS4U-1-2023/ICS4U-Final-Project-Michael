@@ -24,10 +24,10 @@ LEARNING_RATE = 0.001
 #physical_devices = tf.config.list_physical_devices("GPU")
 #tf.config.experimental.set_memory_growth(physical_devices[0], True)
 
-train_df = pd.read_csv("train.csv")
-test_df = pd.read_csv("test.csv")
-train_images = os.getcwd() + "/train_images/" + train_df.iloc[:, 0].values
-test_images = os.getcwd() + "/test_images/" + test_df.iloc[:, 0].values
+train_df = pd.read_csv("/home/ec2-user/environment/ICS4U/Final-Project-TF/ICS4U-Final-Project-Michael/Video-7/train.csv")
+test_df = pd.read_csv("/home/ec2-user/environment/ICS4U/Final-Project-TF/ICS4U-Final-Project-Michael/Video-7/test.csv")
+train_images = os.getcwd() + "/ICS4U/Final-Project-TF/ICS4U-Final-Project-Michael/Video-7/train_images/" + train_df.iloc[:, 0].values
+test_images = os.getcwd() + "/ICS4U/Final-Project-TF/ICS4U-Final-Project-Michael/Video-7/test_images/" + test_df.iloc[:, 0].values
 
 train_labels = train_df.iloc[:, 1:].values
 test_labels = test_df.iloc[:, 1:].values
@@ -92,7 +92,7 @@ model = keras.Model(inputs=inputs, outputs=[output1, output2])
 model.compile(
     optimizer=keras.optimizers.Adam(LEARNING_RATE),
     loss=keras.losses.SparseCategoricalCrossentropy(),
-    metrics=["accuracy"],
+    metrics=[["accuracy"], ["accuracy"]],
 )
 
 model.fit(train_dataset, epochs=5, verbose=2)
